@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://d0rasn6nneyvu"]
+
+[node name="Root Container" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SaveManager" type="SaveManager" parent="."]
+
+[node name="MainMenuManager" type="MainMenuManager" parent="." node_paths=PackedStringArray("save_manager", "main_menu_ui")]
+save_manager = NodePath("../SaveManager")
+main_menu_ui = NodePath("MainMenuUIManager")
+
+[node name="MainMenuUIManager" type="MainMenuUIManager" parent="MainMenuManager" node_paths=PackedStringArray("start_menu_root", "game_setup_root", "resume_button", "seed_box")]
+start_menu_root = NodePath("../../Center Menu/Start Menu")
+game_setup_root = NodePath("../../Center Menu/Game Setup")
+resume_button = NodePath("../../Center Menu/Start Menu/Button Container/resume button")
+seed_box = NodePath("../../Center Menu/Game Setup/Button Container/VFlowContainer/SeedBox")
+
+[node name="Center Menu" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start Menu" type="VBoxContainer" parent="Center Menu"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="Center Menu/Start Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "speed crawler"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Container" type="VBoxContainer" parent="Center Menu/Start Menu"]
+layout_mode = 2
+alignment = 1
+
+[node name="start button" type="Button" parent="Center Menu/Start Menu/Button Container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+action_mode = 0
+text = "start game"
+
+[node name="resume button" type="Button" parent="Center Menu/Start Menu/Button Container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+disabled = true
+action_mode = 0
+text = "resume game"
+
+[node name="Game Setup" type="VBoxContainer" parent="Center Menu"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="Center Menu/Game Setup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "game setup"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Container" type="VBoxContainer" parent="Center Menu/Game Setup"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center Menu/Game Setup/Button Container"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "seed"
+
+[node name="VFlowContainer" type="HBoxContainer" parent="Center Menu/Game Setup/Button Container"]
+layout_mode = 2
+
+[node name="SeedBox" type="SpinBox" parent="Center Menu/Game Setup/Button Container/VFlowContainer"]
+custom_minimum_size = Vector2(198, 0)
+layout_mode = 2
+max_value = 1.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+
+[node name="Button" type="Button" parent="Center Menu/Game Setup/Button Container/VFlowContainer"]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+action_mode = 0
+text = "random"
+
+[node name="start button" type="Button" parent="Center Menu/Game Setup/Button Container"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+action_mode = 0
+text = "start game"
+
+[connection signal="pressed" from="Center Menu/Start Menu/Button Container/start button" to="MainMenuManager" method="open_start_game_menu"]
+[connection signal="pressed" from="Center Menu/Start Menu/Button Container/resume button" to="MainMenuManager" method="resume_game"]
+[connection signal="pressed" from="Center Menu/Game Setup/Button Container/VFlowContainer/Button" to="MainMenuManager" method="reroll_seed"]
+[connection signal="pressed" from="Center Menu/Game Setup/Button Container/start button" to="MainMenuManager" method="start_game"]

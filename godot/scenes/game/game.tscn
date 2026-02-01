@@ -1,0 +1,624 @@
+[gd_scene load_steps=21 format=3 uid="uid://bgrloohm8paoe"]
+
+[ext_resource type="Texture2D" uid="uid://cpq5gkwm8q02y" path="res://icons/input-arrow.png" id="1_7h61r"]
+[ext_resource type="FontVariation" uid="uid://70cyw2mu4uc5" path="res://ui/fonts/go_text.tres" id="2_5i0tg"]
+[ext_resource type="FontVariation" uid="uid://dpokd5yl5ckw4" path="res://ui/fonts/1_text.tres" id="3_bdhmt"]
+[ext_resource type="FontVariation" uid="uid://50w114mbqh6o" path="res://ui/fonts/2_text.tres" id="4_87uf6"]
+[ext_resource type="FontVariation" uid="uid://5wbawrxg4vb" path="res://ui/fonts/3_text.tres" id="5_2a8rs"]
+[ext_resource type="Texture2D" uid="uid://bybse655hed3y" path="res://models/player/globert_0.png" id="6_5jirj"]
+[ext_resource type="PackedScene" uid="uid://c1g37rubk34ht" path="res://objects/floor/floor.tscn" id="7_bdhmt"]
+[ext_resource type="Texture2D" uid="uid://bljs0uncdfqns" path="res://models/player/globert_0_1.png" id="7_vaxfo"]
+[ext_resource type="Texture2D" uid="uid://cyo870lwgcfuk" path="res://models/player/globert_1.png" id="8_ftsea"]
+[ext_resource type="Texture2D" uid="uid://dpjftnvfvnxyt" path="res://models/player/globert_2.png" id="9_otnwt"]
+[ext_resource type="Texture2D" uid="uid://7buid7axgglq" path="res://models/player/globert_3.png" id="10_3xj4h"]
+
+[sub_resource type="Gradient" id="Gradient_bdhmt"]
+offsets = PackedFloat32Array(0, 0.8493724, 0.9129129, 0.9497908, 0.9665272)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_87uf6"]
+gradient = SubResource("Gradient_bdhmt")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.50427353, 0.9102564)
+repeat = 2
+
+[sub_resource type="Gradient" id="Gradient_5i0tg"]
+offsets = PackedFloat32Array(0, 0.8493724, 0.8558559, 0.9497908, 0.9665272)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bdhmt"]
+gradient = SubResource("Gradient_5i0tg")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.50427353, 0.9102564)
+repeat = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sul5r"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ifgtf"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_sul5r"]
+sky_material = SubResource("ProceduralSkyMaterial_ifgtf")
+
+[sub_resource type="Environment" id="Environment_7h61r"]
+sky = SubResource("Sky_sul5r")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 7.7
+tonemap_mode = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uyinl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_5jirj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vaxfo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_5jirj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ftsea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_otnwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3xj4h")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SaveManager" type="SaveManager" parent="."]
+
+[node name="GameManager" type="GameManager" parent="." node_paths=PackedStringArray("save_manager", "game_ui", "player", "floor_manager")]
+save_manager = NodePath("../SaveManager")
+game_ui = NodePath("GameUIManager")
+player = NodePath("../Player")
+floor_manager = NodePath("../FloorManager")
+
+[node name="GameUIManager" type="GameUIManager" parent="GameManager" node_paths=PackedStringArray("loading_root", "countdown_root", "countdown_big_3", "countdown_big_2", "countdown_big_1", "countdown_big_go", "progress_ring", "score_root", "pause_root", "game_time_label", "target_time_label", "score_game_time_label", "score_target_time_label", "score_time_delta_label", "score_start_money_label", "score_money_delta_label", "score_end_money_label", "score_home_button", "score_exit_button", "score_continue_button")]
+loading_root = NodePath("../../UI/Loading View")
+countdown_root = NodePath("../../UI/Split View/Player View/Countdown Container")
+countdown_big_3 = NodePath("../../UI/Split View/Player View/Countdown Container/3 container")
+countdown_big_2 = NodePath("../../UI/Split View/Player View/Countdown Container/2 container")
+countdown_big_1 = NodePath("../../UI/Split View/Player View/Countdown Container/1 container")
+countdown_big_go = NodePath("../../UI/Split View/Player View/Countdown Container/go container")
+progress_ring = NodePath("../../UI/Split View/Player View/Progress Ring Container/Progress Ring View/Progress Ring")
+score_root = NodePath("../../UI/Score View")
+pause_root = NodePath("../../UI/Pause View")
+game_time_label = NodePath("../../UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout/used time")
+target_time_label = NodePath("../../UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout/target time")
+score_game_time_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/completion time container/completion time")
+score_target_time_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/target time container/target time")
+score_time_delta_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/time delta")
+score_start_money_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/start money container/start money")
+score_money_delta_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/money delta")
+score_end_money_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/final money")
+score_home_button = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/home button")
+score_exit_button = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/exit button")
+score_continue_button = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/continue button")
+
+[node name="FloorManager" type="FloorManager" parent="." node_paths=PackedStringArray("game_manager", "current_floor")]
+game_manager = NodePath("../GameManager")
+current_floor = NodePath("../Floor")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Split View" type="HSplitContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+theme_override_constants/autohide = 0
+split_offset = 1024
+
+[node name="Player View" type="Control" parent="UI/Split View"]
+layout_mode = 2
+
+[node name="Player Viewport Container" type="SubViewportContainer" parent="UI/Split View/Player View"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="Player Viewport" type="SubViewport" parent="UI/Split View/Player View/Player Viewport Container"]
+handle_input_locally = false
+size = Vector2i(1024, 648)
+render_target_update_mode = 4
+
+[node name="Player Camera" type="PlayerCamera" parent="UI/Split View/Player View/Player Viewport Container/Player Viewport" node_paths=PackedStringArray("follow_target")]
+follow_target = NodePath("../../../../../../Player")
+projection = 1
+current = true
+size = 16.0
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Split View/Player View"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player Cooldown" type="TextureProgressBar" parent="UI/Split View/Player View/CenterContainer"]
+layout_mode = 2
+rounded = true
+fill_mode = 4
+texture_progress = SubResource("GradientTexture2D_87uf6")
+
+[node name="Timer Container" type="PanelContainer" parent="UI/Split View/Player View"]
+layout_mode = 1
+offset_right = 239.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Split View/Player View/Timer Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Timer Layout" type="HBoxContainer" parent="UI/Split View/Player View/Timer Container/MarginContainer"]
+layout_mode = 2
+
+[node name="used time" type="Label" parent="UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+text = "00:00:00.00"
+
+[node name="separator" type="Label" parent="UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout"]
+layout_mode = 2
+text = "/"
+
+[node name="target time" type="Label" parent="UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+text = "00:00:00.00"
+horizontal_alignment = 2
+
+[node name="Input Container" type="PanelContainer" parent="UI/Split View/Player View"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Split View/Player View/Input Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Split View/Player View/Input Container/MarginContainer"]
+layout_mode = 2
+
+[node name="used time" type="Label" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "inputs"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="Input List" type="HBoxContainer" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect4" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect5" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect6" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect7" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect8" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect9" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect10" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect11" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect12" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect13" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect14" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="TextureRect15" type="TextureRect" parent="UI/Split View/Player View/Input Container/MarginContainer/VBoxContainer/ScrollContainer/Input List"]
+layout_mode = 2
+texture = ExtResource("1_7h61r")
+
+[node name="Progress Ring Container" type="PanelContainer" parent="UI/Split View/Player View"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Progress Ring View" type="MarginContainer" parent="UI/Split View/Player View/Progress Ring Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Progress Ring" type="TextureProgressBar" parent="UI/Split View/Player View/Progress Ring Container/Progress Ring View"]
+layout_mode = 2
+value = 100.0
+rounded = true
+fill_mode = 4
+texture_progress = SubResource("GradientTexture2D_bdhmt")
+
+[node name="Countdown Container" type="Control" parent="UI/Split View/Player View"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="go container" type="CenterContainer" parent="UI/Split View/Player View/Countdown Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="go" type="Label" parent="UI/Split View/Player View/Countdown Container/go container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_5i0tg")
+theme_override_font_sizes/font_size = 250
+text = "GO"
+
+[node name="1 container" type="CenterContainer" parent="UI/Split View/Player View/Countdown Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="1" type="Label" parent="UI/Split View/Player View/Countdown Container/1 container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bdhmt")
+theme_override_font_sizes/font_size = 250
+text = "1"
+
+[node name="2 container" type="CenterContainer" parent="UI/Split View/Player View/Countdown Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="2" type="Label" parent="UI/Split View/Player View/Countdown Container/2 container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_87uf6")
+theme_override_font_sizes/font_size = 250
+text = "2"
+
+[node name="3 container" type="CenterContainer" parent="UI/Split View/Player View/Countdown Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="3" type="Label" parent="UI/Split View/Player View/Countdown Container/3 container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_2a8rs")
+theme_override_font_sizes/font_size = 250
+text = "3"
+
+[node name="Map View" type="Control" parent="UI/Split View"]
+layout_mode = 2
+mouse_default_cursor_shape = 6
+
+[node name="Map Viewport Container" type="SubViewportContainer" parent="UI/Split View/Map View"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="Map Viewport" type="SubViewport" parent="UI/Split View/Map View/Map Viewport Container"]
+handle_input_locally = false
+size = Vector2i(120, 648)
+render_target_update_mode = 4
+
+[node name="Map Camera" type="MapCamera" parent="UI/Split View/Map View/Map Viewport Container/Map Viewport"]
+projection = 1
+current = true
+size = 16.0
+
+[node name="Loading View" type="PanelContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sul5r")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Loading View"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Loading View/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "loading floor..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score View" type="PanelContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sul5r")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Score View"]
+layout_mode = 2
+
+[node name="Pause Menu" type="VBoxContainer" parent="UI/Score View/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Score View/CenterContainer/Pause Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "floor complete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Container" type="VBoxContainer" parent="UI/Score View/CenterContainer/Pause Menu"]
+layout_mode = 2
+alignment = 1
+
+[node name="target time container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+
+[node name="target time label" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/target time container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "target time"
+
+[node name="target time" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/target time container"]
+layout_mode = 2
+text = "00:00:00.00"
+horizontal_alignment = 2
+
+[node name="completion time container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+
+[node name="completion time label" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/completion time container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "completion time"
+
+[node name="completion time" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/completion time container"]
+layout_mode = 2
+text = "00:00:00.00"
+horizontal_alignment = 2
+
+[node name="HSeparator1" type="HSeparator" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+
+[node name="time delta" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+text = "+00:00:00.00"
+horizontal_alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+
+[node name="start money container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+
+[node name="start money label" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/start money container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "money"
+
+[node name="start money" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/start money container"]
+layout_mode = 2
+text = "$0"
+horizontal_alignment = 2
+
+[node name="money delta" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+text = "+$0"
+horizontal_alignment = 2
+
+[node name="HSeparator3" type="HSeparator" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+
+[node name="final money" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+text = "$0"
+horizontal_alignment = 2
+
+[node name="HSeparator4" type="HSeparator" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+layout_mode = 2
+
+[node name="home button" type="Button" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+visible = false
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+action_mode = 0
+text = "home"
+
+[node name="continue button" type="Button" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+action_mode = 0
+text = "continue"
+
+[node name="exit button" type="Button" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+action_mode = 0
+text = "save and exit"
+
+[node name="Pause View" type="PanelContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sul5r")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Pause View"]
+layout_mode = 2
+
+[node name="Pause Menu" type="VBoxContainer" parent="UI/Pause View/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Pause View/CenterContainer/Pause Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Container" type="VBoxContainer" parent="UI/Pause View/CenterContainer/Pause Menu"]
+layout_mode = 2
+alignment = 1
+
+[node name="restart button" type="Button" parent="UI/Pause View/CenterContainer/Pause Menu/Button Container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+action_mode = 0
+text = "restart floor
+"
+
+[node name="exit button" type="Button" parent="UI/Pause View/CenterContainer/Pause Menu/Button Container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+action_mode = 0
+text = "save and exit"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7h61r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="Player" type="Player" parent="." node_paths=PackedStringArray("game_manager", "sprite", "cooldown_ring")]
+game_manager = NodePath("../GameManager")
+sprite = NodePath("AnimatedSprite3D")
+cooldown_ring = NodePath("../UI/Split View/Player View/CenterContainer/Player Cooldown")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+pixel_size = 0.075
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_uyinl")
+animation = &"run"
+
+[node name="Floor" parent="." node_paths=PackedStringArray("player", "floor_manager") instance=ExtResource("7_bdhmt")]
+player = NodePath("../Player")
+floor_manager = NodePath("../FloorManager")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[connection signal="pressed" from="UI/Score View/CenterContainer/Pause Menu/Button Container/home button" to="GameManager" method="clear_and_exit"]
+[connection signal="pressed" from="UI/Score View/CenterContainer/Pause Menu/Button Container/continue button" to="GameManager" method="start_shop"]
+[connection signal="pressed" from="UI/Score View/CenterContainer/Pause Menu/Button Container/exit button" to="GameManager" method="save_and_exit"]
+[connection signal="pressed" from="UI/Pause View/CenterContainer/Pause Menu/Button Container/restart button" to="GameManager" method="restart_level"]
+[connection signal="pressed" from="UI/Pause View/CenterContainer/Pause Menu/Button Container/exit button" to="GameManager" method="save_and_exit"]

@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://5wbawrxg4vb"]
+
+[ext_resource type="FontFile" uid="uid://ck26agt6rgem4" path="res://ui/fonts/Object_Sans_Variable.woff2" id="1_u6eir"]
+
+[resource]
+base_font = ExtResource("1_u6eir")
+variation_opentype = {
+1936486004: 0,
+2003265652: 300
+}

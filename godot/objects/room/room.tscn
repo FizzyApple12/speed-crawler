@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://jjwn8w1jr4hh"]
+
+[ext_resource type="ArrayMesh" uid="uid://bbva2ybl242sv" path="res://models/room/border.obj" id="1_i8eox"]
+[ext_resource type="Shader" uid="uid://ndy4dmmgluqs" path="res://shaders/room/room.gdshader" id="1_mqkir"]
+[ext_resource type="Shader" uid="uid://ba641tojmp4h3" path="res://models/room/corridor.gdshader" id="4_soycb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05e3a"]
+render_priority = 0
+shader = ExtResource("1_mqkir")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6g5ru"]
+render_priority = 0
+shader = ExtResource("4_soycb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_05e3a"]
+size = Vector2(3, 3)
+
+[node name="Room" type="Room" node_paths=PackedStringArray("center_fog", "top_left_fog", "top_right_fog", "bottom_left_fog", "bottom_right_fog", "left_corridor", "right_corridor", "top_corridor", "bottom_corridor")]
+center_fog = NodePath("center fog")
+top_left_fog = NodePath("top left fog")
+top_right_fog = NodePath("top right fog")
+bottom_left_fog = NodePath("bottom left fog")
+bottom_right_fog = NodePath("bottom right fog")
+left_corridor = NodePath("corridor left")
+right_corridor = NodePath("corridor right")
+top_corridor = NodePath("corridor top")
+bottom_corridor = NodePath("corridor bottom")
+
+[node name="border" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_05e3a")
+mesh = ExtResource("1_i8eox")
+
+[node name="center fog" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+skeleton = NodePath("../corridor left")
+
+[node name="top left fog" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -0.2)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+skeleton = NodePath("../corridor left")
+
+[node name="top right fog" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -0.2)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+skeleton = NodePath("../corridor left")
+
+[node name="bottom left fog" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -2.5, -0.2)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+skeleton = NodePath("../corridor left")
+
+[node name="bottom right fog" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -2.5, -0.2)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+skeleton = NodePath("../corridor left")
+
+[node name="corridor left" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0.1)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+
+[node name="corridor right" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0.1)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+skeleton = NodePath("../corridor left")
+
+[node name="corridor top" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 2.5, 0.1)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+skeleton = NodePath("../corridor right")
+
+[node name="corridor bottom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, -2.5, 0.1)
+material_override = SubResource("ShaderMaterial_6g5ru")
+mesh = SubResource("QuadMesh_05e3a")
+skeleton = NodePath("../corridor top")

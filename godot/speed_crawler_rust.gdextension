@@ -1,0 +1,14 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = 4.1
+reloadable = true
+
+[libraries]
+linux.debug.x86_64 =     "res://../rust/target/debug/libspeed_crawler_rust.so"
+linux.release.x86_64 =   "res://../rust/target/release/libspeed_crawler_rust.so"
+windows.debug.x86_64 =   "res://../rust/target/debug/speed_crawler_rust.dll"
+windows.release.x86_64 = "res://../rust/target/release/speed_crawler_rust.dll"
+macos.debug =            "res://../rust/target/debug/libspeed_crawler_rust.dylib"
+macos.release =          "res://../rust/target/release/libspeed_crawler_rust.dylib"
+macos.debug.arm64 =      "res://../rust/target/debug/libspeed_crawler_rust.dylib"
+macos.release.arm64 =    "res://../rust/target/release/libspeed_crawler_rust.dylib"

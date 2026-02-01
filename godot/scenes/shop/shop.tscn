@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://i063qjtb687o"]
+
+[node name="Root Container" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SaveManager" type="SaveManager" parent="."]
+
+[node name="ShopManager" type="ShopManager" parent="." node_paths=PackedStringArray("save_manager", "shop_ui")]
+save_manager = NodePath("../SaveManager")
+shop_ui = NodePath("ShopUIManager")
+
+[node name="ShopUIManager" type="ShopUIManager" parent="ShopManager" node_paths=PackedStringArray("current_money", "current_upgrades", "upgrade_name_labels", "upgrade_description_labels", "upgrade_buy_buttons", "reroll_button")]
+current_money = NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/current money")
+current_upgrades = NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/current upgrades")
+upgrade_name_labels = [NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/upgrade name"), NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/upgrade name"), NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/upgrade name")]
+upgrade_description_labels = [NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/upgrade description"), NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/upgrade description"), NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/upgrade description")]
+upgrade_buy_buttons = [NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/upgrade buy"), NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/upgrade buy"), NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/upgrade buy")]
+reroll_button = NodePath("../../CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/reroll")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "shop"
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="current upgrades label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "current upgrades"
+horizontal_alignment = 1
+
+[node name="current upgrades" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "action takes x
+action takes y
+action takes z"
+
+[node name="current money" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "wallet: $0"
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="upgrade name" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "upgrade name"
+horizontal_alignment = 1
+
+[node name="upgrade description" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "action x by y"
+
+[node name="upgrade buy" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "buy $0"
+
+[node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="upgrade name" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "upgrade name"
+horizontal_alignment = 1
+
+[node name="upgrade description" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "action x by y"
+
+[node name="upgrade buy" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "buy $0"
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="upgrade name" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "upgrade name"
+horizontal_alignment = 1
+
+[node name="upgrade description" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "action x by y"
+
+[node name="upgrade buy" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "buy $0"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="reroll" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "reroll $4"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button Container" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="exit button" type="Button" parent="CenterContainer/VBoxContainer/Button Container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+action_mode = 0
+text = "save and exit"
+
+[node name="start button" type="Button" parent="CenterContainer/VBoxContainer/Button Container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+action_mode = 0
+text = "start game"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/upgrade buy" to="ShopManager" method="buy_upgrade" binds= [0]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/upgrade buy" to="ShopManager" method="buy_upgrade" binds= [1]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/upgrade buy" to="ShopManager" method="buy_upgrade" binds= [2]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/reroll" to="ShopManager" method="reroll_shop"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button Container/exit button" to="ShopManager" method="save_and_exit"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button Container/start button" to="ShopManager" method="start_game"]
