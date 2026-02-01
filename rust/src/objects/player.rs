@@ -229,8 +229,8 @@ impl INode3D for Player {
                     .min(self.current_game.player_properties.max_speed);
 
                 let speed_vector = Vector3::new(
-                    (self.speed as f32 * self.direction.0 as f32) * delta as f32,
-                    (self.speed as f32 * self.direction.1 as f32) * delta as f32,
+                    (1 as f32 * self.direction.0 as f32) * delta as f32,
+                    (1 as f32 * self.direction.1 as f32) * delta as f32,
                     0.0,
                 );
 
