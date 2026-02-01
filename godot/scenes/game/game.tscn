@@ -95,7 +95,7 @@ game_ui = NodePath("GameUIManager")
 player = NodePath("../Player")
 floor_manager = NodePath("../FloorManager")
 
-[node name="GameUIManager" type="GameUIManager" parent="GameManager" node_paths=PackedStringArray("loading_root", "countdown_root", "countdown_big_3", "countdown_big_2", "countdown_big_1", "countdown_big_go", "progress_ring", "score_root", "pause_root", "game_time_label", "target_time_label", "score_game_time_label", "score_target_time_label", "score_time_delta_label", "score_start_money_label", "score_money_delta_label", "score_end_money_label", "score_home_button", "score_exit_button", "score_continue_button")]
+[node name="GameUIManager" type="GameUIManager" parent="GameManager" node_paths=PackedStringArray("loading_root", "countdown_root", "countdown_big_3", "countdown_big_2", "countdown_big_1", "countdown_big_go", "progress_ring", "score_root", "pause_root", "floor_label", "game_time_label", "target_time_label", "score_game_time_label", "score_target_time_label", "score_time_delta_label", "score_start_money_label", "score_money_delta_label", "score_end_money_label", "score_home_button", "score_exit_button", "score_continue_button")]
 loading_root = NodePath("../../UI/Loading View")
 countdown_root = NodePath("../../UI/Split View/Player View/Countdown Container")
 countdown_big_3 = NodePath("../../UI/Split View/Player View/Countdown Container/3 container")
@@ -105,6 +105,7 @@ countdown_big_go = NodePath("../../UI/Split View/Player View/Countdown Container
 progress_ring = NodePath("../../UI/Split View/Player View/Progress Ring Container/Progress Ring View/Progress Ring")
 score_root = NodePath("../../UI/Score View")
 pause_root = NodePath("../../UI/Pause View")
+floor_label = NodePath("../../UI/Split View/Map View/Timer Container/MarginContainer/floor number")
 game_time_label = NodePath("../../UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout/used time")
 target_time_label = NodePath("../../UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout/target time")
 score_game_time_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/completion time container/completion time")
@@ -415,6 +416,20 @@ render_target_update_mode = 4
 projection = 1
 current = true
 size = 16.0
+
+[node name="Timer Container" type="PanelContainer" parent="UI/Split View/Map View"]
+layout_mode = 1
+offset_right = 69.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Split View/Map View/Timer Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="floor number" type="Label" parent="UI/Split View/Map View/Timer Container/MarginContainer"]
+layout_mode = 2
+text = "floor 0"
 
 [node name="Loading View" type="PanelContainer" parent="UI"]
 visible = false

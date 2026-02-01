@@ -94,7 +94,7 @@ impl ShopManager {
                     upgrade.get_name(),
                     upgrade.get_description(),
                     upgrade.get_price(),
-                    upgrade.get_price() < self.current_game.money,
+                    upgrade.get_price() <= self.current_game.money,
                     *sold,
                 );
             }
@@ -134,7 +134,7 @@ impl ShopManager {
                 upgrade.get_name(),
                 upgrade.get_description(),
                 upgrade.get_price(),
-                upgrade.get_price() < self.current_game.money,
+                upgrade.get_price() <= self.current_game.money,
                 *sold,
             );
         }

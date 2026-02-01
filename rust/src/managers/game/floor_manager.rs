@@ -77,7 +77,7 @@ impl FloorManager {
             }
 
             let estimated_time = rooms.len() as f64
-                * ((1.0 / (save_game.current_floor.max(0) as f64 + 1.0)) * 2.0 + 0.5);
+                * ((1.0 / ((save_game.current_floor.max(0) as f64 / 2.0) + 1.0)) * 2.0 + 1.0);
 
             (rooms, estimated_time)
         }));

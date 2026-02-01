@@ -93,6 +93,10 @@ impl GameManager {
             GameState::Loading => {
                 self.setup_level();
 
+                self.game_ui
+                    .bind_mut()
+                    .set_floor(self.current_game.current_floor);
+
                 self.game_ui.bind_mut().open_ui_view(GameUIView::Loading);
             }
             GameState::WarmUp => {

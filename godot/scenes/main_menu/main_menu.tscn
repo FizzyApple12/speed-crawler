@@ -29,6 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Start Menu" type="VBoxContainer" parent="Center Menu"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
@@ -58,7 +59,6 @@ action_mode = 0
 text = "resume game"
 
 [node name="Game Setup" type="VBoxContainer" parent="Center Menu"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
@@ -102,7 +102,15 @@ layout_mode = 2
 action_mode = 0
 text = "start game"
 
+[node name="back button" type="Button" parent="Center Menu/Game Setup/Button Container"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+action_mode = 0
+text = "back
+"
+
 [connection signal="pressed" from="Center Menu/Start Menu/Button Container/start button" to="MainMenuManager" method="open_start_game_menu"]
 [connection signal="pressed" from="Center Menu/Start Menu/Button Container/resume button" to="MainMenuManager" method="resume_game"]
 [connection signal="pressed" from="Center Menu/Game Setup/Button Container/VFlowContainer/Button" to="MainMenuManager" method="reroll_seed"]
 [connection signal="pressed" from="Center Menu/Game Setup/Button Container/start button" to="MainMenuManager" method="start_game"]
+[connection signal="pressed" from="Center Menu/Game Setup/Button Container/back button" to="MainMenuManager" method="open_main_menu"]

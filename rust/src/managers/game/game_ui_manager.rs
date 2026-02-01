@@ -38,6 +38,9 @@ pub struct GameUIManager {
     pause_root: OnEditor<Gd<CanvasItem>>,
 
     #[export]
+    floor_label: OnEditor<Gd<Label>>,
+
+    #[export]
     game_time_label: OnEditor<Gd<Label>>,
     #[export]
     target_time_label: OnEditor<Gd<Label>>,
@@ -157,6 +160,10 @@ impl GameUIManager {
         }
     }
 
+    pub fn set_floor(&mut self, floor: i64) {
+        self.floor_label.set_text(&format!("floor {floor}"));
+    }
+
     pub fn set_game_time(&mut self, time: f64, target: f64) {
         self.countdown_root.set_visible(time <= 1.0);
 
@@ -237,6 +244,8 @@ impl INode for GameUIManager {
             score_root: OnEditor::default(),
 
             pause_root: OnEditor::default(),
+
+            floor_label: OnEditor::default(),
 
             game_time_label: OnEditor::default(),
             target_time_label: OnEditor::default(),

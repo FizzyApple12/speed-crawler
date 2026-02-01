@@ -124,17 +124,17 @@ impl UpgradeType {
 
     pub fn get_price(&self) -> i64 {
         match self {
-            UpgradeType::AddWarmup(time) => 2 + (*time as i64),
+            UpgradeType::AddWarmup(time) => 2 + (time.floor() as i64),
 
-            UpgradeType::MultiplySpeed(factor) => 4 + (*factor as i64),
-            UpgradeType::AddSpeed(speed) => 2 + (*speed as i64),
+            UpgradeType::MultiplySpeed(factor) => 4 + (factor.floor() as i64),
+            UpgradeType::AddSpeed(speed) => 2 + (speed.floor() as i64),
 
-            UpgradeType::MultiplyAcceleration(factor) => 4 + (*factor as i64),
-            UpgradeType::AddAcceleration(acceleration) => 2 + (*acceleration as i64),
+            UpgradeType::MultiplyAcceleration(factor) => 4 + (factor.floor() as i64),
+            UpgradeType::AddAcceleration(acceleration) => 2 + (acceleration.floor() as i64),
 
-            UpgradeType::AddViewDistance(distance) => 4 + (*distance as i64),
+            UpgradeType::AddViewDistance(distance) => 4 + (distance.floor() as i64),
 
-            UpgradeType::DivideMass(divisor) => 6 + (*divisor as i64),
+            UpgradeType::DivideMass(divisor) => 6 + (divisor.floor() as i64),
         }
     }
 

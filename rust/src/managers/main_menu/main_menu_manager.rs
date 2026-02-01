@@ -27,6 +27,11 @@ impl MainMenuManager {
     }
 
     #[func]
+    fn open_main_menu(&mut self) {
+        self.main_menu_ui.bind_mut().open_ui_view(MenuUIView::Home);
+    }
+
+    #[func]
     fn reroll_seed(&mut self) {
         let new_seed = randi();
 
