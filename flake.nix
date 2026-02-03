@@ -17,13 +17,13 @@
       in {
         devShells.default = pkgs.mkShell rec {
           nativeBuildInputs = with pkgs; [
-          	godot
-           	godot-export-templates-bin
+            godot
+            godot-export-templates-bin
             pkg-config
             cmake
             clang
             llvmPackages.bintools
-            windows.mingw_w64_headers
+            # windows.mingw_w64_headers
             rustup
             bash
             python312

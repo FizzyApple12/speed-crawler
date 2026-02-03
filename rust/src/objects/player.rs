@@ -58,11 +58,21 @@ impl Player {
     }
 
     pub fn reset(&mut self) {
+        self.is_running_animation = false;
+
         self.speed = 0.0;
         self.cooldown = 0.0;
+        self.total_cooldown = 0.0;
+
+        self.direction = (0, 0);
+
+        self.target_position = (0, 0);
 
         self.base_mut().set_position(Vector3::new(0.0, 0.0, 0.0));
         self.cooldown_ring.set_value(0.0);
+
+        self.sprite.set_animation("default");
+        self.sprite.play();
     }
 
     pub fn change_game_state(&mut self, next_game_state: GameState) {
@@ -137,8 +147,7 @@ impl INode3D for Player {
     }
 
     fn ready(&mut self) {
-        self.sprite.set_animation("default");
-        self.sprite.play();
+        self.reset();
     }
 
     fn process(&mut self, _delta: f64) {

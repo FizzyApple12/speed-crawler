@@ -56,7 +56,7 @@ impl FloorManager {
             let max_room_count = 20 + (save_game.current_floor.pow(2)) + rng.random_range(-10..=10);
 
             // fixes rng somehow????
-            for _ in 0..(max_room_count * 2) {
+            for _ in 0..3 {
                 let _ = rng.random_range(-1..=1);
             }
 

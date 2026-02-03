@@ -8,7 +8,7 @@ use godot::obj::WithBaseField;
 use godot::prelude::*;
 
 const SCROLL_SENSITIVITY: f32 = 1.2;
-const MIN_SCROLL: f32 = 1.0;
+const MIN_SCROLL: f32 = 2.0;
 const MAX_SCROLL: f32 = ROOM_GRID_BASIS * 32.0;
 
 #[derive(GodotClass)]
@@ -29,7 +29,7 @@ impl ICamera3D for MapCamera {
         Self {
             position: Vector2 { x: 0.0, y: 0.0 },
 
-            view_range: 16.0,
+            view_range: 24.0,
 
             is_holding: false,
 
