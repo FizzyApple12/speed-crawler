@@ -1,5 +1,5 @@
 use crate::managers::game::floor_manager::FloorLayout;
-use crate::managers::game::game_manager::{GameManager, GameState};
+use crate::managers::game::game_manager::GameState;
 use crate::objects::map::ROOM_GRID_BASIS;
 use crate::types::input_bindings::InputBindings;
 use crate::types::save_game::SaveGame;
@@ -21,9 +21,6 @@ enum PlayerStatus {
 #[derive(GodotClass)]
 #[class(base=Node3D)]
 pub struct Player {
-    #[export]
-    game_manager: OnEditor<Gd<GameManager>>,
-
     #[export]
     sprite: OnEditor<Gd<AnimatedSprite3D>>,
 
@@ -118,8 +115,6 @@ impl Player {
 impl INode3D for Player {
     fn init(base: Base<Node3D>) -> Self {
         Self {
-            game_manager: OnEditor::default(),
-
             sprite: OnEditor::default(),
 
             cooldown_ring: OnEditor::default(),

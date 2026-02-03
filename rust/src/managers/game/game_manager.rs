@@ -137,13 +137,10 @@ impl GameManager {
             .setup_level(self.current_game.clone());
     }
 
-    pub fn level_setup_complete(
-        &mut self,
-        floor_layout: FloorLayout,
-        estimated_completion_time: f64,
-    ) {
-        self.floor_layout = floor_layout;
-        self.estimated_completion_time = estimated_completion_time;
+    #[func]
+    pub fn level_setup_complete(&mut self) {
+        self.floor_layout = self.floor_manager.bind().current_floor_layout.clone();
+        self.estimated_completion_time = self.floor_manager.bind().estimated_completion_time;
 
         self.player
             .bind_mut()
@@ -154,6 +151,7 @@ impl GameManager {
         self.change_game_state(GameState::WarmUp);
     }
 
+    #[func]
     pub fn level_setup_failed(&mut self) {
         self.change_game_state(GameState::Loading);
     }

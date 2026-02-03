@@ -119,8 +119,7 @@ score_home_button = NodePath("../../UI/Score View/CenterContainer/Score Menu/But
 score_exit_button = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/exit button")
 score_continue_button = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/continue button")
 
-[node name="FloorManager" type="FloorManager" parent="." node_paths=PackedStringArray("game_manager", "current_floor")]
-game_manager = NodePath("../GameManager")
+[node name="FloorManager" type="FloorManager" parent="." node_paths=PackedStringArray("current_floor")]
 current_floor = NodePath("../Floor")
 
 [node name="UI" type="Control" parent="."]
@@ -159,7 +158,7 @@ handle_input_locally = false
 size = Vector2i(1024, 648)
 render_target_update_mode = 4
 
-[node name="Player Camera" type="PlayerCamera" parent="UI/Split View/Player View/Player Viewport Container/Player Viewport" node_paths=PackedStringArray("follow_target")]
+[node name="Player Camera" type="FollowCamera" parent="UI/Split View/Player View/Player Viewport Container/Player Viewport" node_paths=PackedStringArray("follow_target")]
 follow_target = NodePath("../../../../../../Player")
 projection = 1
 current = true
@@ -622,8 +621,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 visible = false
 shadow_enabled = true
 
-[node name="Player" type="Player" parent="." node_paths=PackedStringArray("game_manager", "sprite", "cooldown_ring")]
-game_manager = NodePath("../GameManager")
+[node name="Player" type="Player" parent="." node_paths=PackedStringArray("sprite", "cooldown_ring")]
 sprite = NodePath("AnimatedSprite3D")
 cooldown_ring = NodePath("../UI/Split View/Player View/CenterContainer/Player Cooldown")
 
@@ -634,11 +632,12 @@ texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_uyinl")
 animation = &"run"
 
-[node name="Floor" parent="." node_paths=PackedStringArray("player", "floor_manager") instance=ExtResource("7_bdhmt")]
+[node name="Floor" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_bdhmt")]
 player = NodePath("../Player")
-floor_manager = NodePath("../FloorManager")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
+[connection signal="level_setup_complete" from="FloorManager" to="GameManager" method="level_setup_complete"]
+[connection signal="level_setup_failed" from="FloorManager" to="GameManager" method="level_setup_failed"]
 [connection signal="pressed" from="UI/Score View/CenterContainer/Score Menu/Button Container/home button" to="GameManager" method="clear_and_exit"]
 [connection signal="pressed" from="UI/Score View/CenterContainer/Score Menu/Button Container/continue button" to="GameManager" method="start_shop"]
 [connection signal="pressed" from="UI/Score View/CenterContainer/Score Menu/Button Container/exit button" to="GameManager" method="save_and_exit"]
