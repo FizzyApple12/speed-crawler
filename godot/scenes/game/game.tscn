@@ -95,7 +95,7 @@ game_ui = NodePath("GameUIManager")
 player = NodePath("../Player")
 floor_manager = NodePath("../FloorManager")
 
-[node name="GameUIManager" type="GameUIManager" parent="GameManager" node_paths=PackedStringArray("loading_root", "countdown_root", "countdown_big_3", "countdown_big_2", "countdown_big_1", "countdown_big_go", "progress_ring", "score_root", "pause_root", "floor_label", "game_time_label", "target_time_label", "score_game_time_label", "score_target_time_label", "score_time_delta_label", "score_start_money_label", "score_money_delta_label", "score_end_money_label", "score_home_button", "score_exit_button", "score_continue_button")]
+[node name="GameUIManager" type="GameUIManager" parent="GameManager" node_paths=PackedStringArray("loading_root", "countdown_root", "countdown_big_3", "countdown_big_2", "countdown_big_1", "countdown_big_go", "progress_ring", "score_root", "pause_root", "floor_label", "game_time_label", "target_time_label", "score_floor_number_label", "score_game_time_label", "score_target_time_label", "score_time_delta_label", "score_start_money_label", "score_money_delta_label", "score_end_money_label", "score_home_button", "score_exit_button", "score_continue_button")]
 loading_root = NodePath("../../UI/Loading View")
 countdown_root = NodePath("../../UI/Split View/Player View/Countdown Container")
 countdown_big_3 = NodePath("../../UI/Split View/Player View/Countdown Container/3 container")
@@ -108,15 +108,16 @@ pause_root = NodePath("../../UI/Pause View")
 floor_label = NodePath("../../UI/Split View/Map View/Timer Container/MarginContainer/floor number")
 game_time_label = NodePath("../../UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout/used time")
 target_time_label = NodePath("../../UI/Split View/Player View/Timer Container/MarginContainer/Timer Layout/target time")
-score_game_time_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/completion time container/completion time")
-score_target_time_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/target time container/target time")
-score_time_delta_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/time delta")
-score_start_money_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/start money container/start money")
-score_money_delta_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/money delta")
-score_end_money_label = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/final money")
-score_home_button = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/home button")
-score_exit_button = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/exit button")
-score_continue_button = NodePath("../../UI/Score View/CenterContainer/Pause Menu/Button Container/continue button")
+score_floor_number_label = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/floor number")
+score_game_time_label = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/completion time container/completion time")
+score_target_time_label = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/target time container/target time")
+score_time_delta_label = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/time delta")
+score_start_money_label = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/start money container/start money")
+score_money_delta_label = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/money delta")
+score_end_money_label = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/final money")
+score_home_button = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/home button")
+score_exit_button = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/exit button")
+score_continue_button = NodePath("../../UI/Score View/CenterContainer/Score Menu/Button Container/continue button")
 
 [node name="FloorManager" type="FloorManager" parent="." node_paths=PackedStringArray("game_manager", "current_floor")]
 game_manager = NodePath("../GameManager")
@@ -452,7 +453,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Score View" type="PanelContainer" parent="UI"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -464,102 +464,109 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_sul5r")
 [node name="CenterContainer" type="CenterContainer" parent="UI/Score View"]
 layout_mode = 2
 
-[node name="Pause Menu" type="VBoxContainer" parent="UI/Score View/CenterContainer"]
+[node name="Score Menu" type="VBoxContainer" parent="UI/Score View/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/Score View/CenterContainer/Pause Menu"]
+[node name="Label" type="Label" parent="UI/Score View/CenterContainer/Score Menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 42
 text = "floor complete"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Container" type="VBoxContainer" parent="UI/Score View/CenterContainer/Pause Menu"]
+[node name="Button Container" type="VBoxContainer" parent="UI/Score View/CenterContainer/Score Menu"]
 layout_mode = 2
 alignment = 1
 
-[node name="target time container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="floor number" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
+layout_mode = 2
+text = "floor 0"
+
+[node name="HSeparator5" type="HSeparator" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 
-[node name="target time label" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/target time container"]
+[node name="target time container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
+layout_mode = 2
+
+[node name="target time label" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container/target time container"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "target time"
 
-[node name="target time" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/target time container"]
+[node name="target time" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container/target time container"]
 layout_mode = 2
 text = "00:00:00.00"
 horizontal_alignment = 2
 
-[node name="completion time container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="completion time container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 
-[node name="completion time label" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/completion time container"]
+[node name="completion time label" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container/completion time container"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "completion time"
 
-[node name="completion time" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/completion time container"]
+[node name="completion time" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container/completion time container"]
 layout_mode = 2
 text = "00:00:00.00"
 horizontal_alignment = 2
 
-[node name="HSeparator1" type="HSeparator" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="HSeparator1" type="HSeparator" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 
-[node name="time delta" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="time delta" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 text = "+00:00:00.00"
 horizontal_alignment = 2
 
-[node name="HSeparator2" type="HSeparator" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="HSeparator2" type="HSeparator" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 
-[node name="start money container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="start money container" type="HBoxContainer" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 
-[node name="start money label" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/start money container"]
+[node name="start money label" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container/start money container"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "money"
 
-[node name="start money" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container/start money container"]
+[node name="start money" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container/start money container"]
 layout_mode = 2
 text = "$0"
 horizontal_alignment = 2
 
-[node name="money delta" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="money delta" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 text = "+$0"
 horizontal_alignment = 2
 
-[node name="HSeparator3" type="HSeparator" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="HSeparator3" type="HSeparator" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 
-[node name="final money" type="Label" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="final money" type="Label" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 text = "$0"
 horizontal_alignment = 2
 
-[node name="HSeparator4" type="HSeparator" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="HSeparator4" type="HSeparator" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 layout_mode = 2
 
-[node name="home button" type="Button" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="home button" type="Button" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 action_mode = 0
 text = "home"
 
-[node name="continue button" type="Button" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="continue button" type="Button" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 action_mode = 0
 text = "continue"
 
-[node name="exit button" type="Button" parent="UI/Score View/CenterContainer/Pause Menu/Button Container"]
+[node name="exit button" type="Button" parent="UI/Score View/CenterContainer/Score Menu/Button Container"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 action_mode = 0
@@ -632,8 +639,8 @@ player = NodePath("../Player")
 floor_manager = NodePath("../FloorManager")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[connection signal="pressed" from="UI/Score View/CenterContainer/Pause Menu/Button Container/home button" to="GameManager" method="clear_and_exit"]
-[connection signal="pressed" from="UI/Score View/CenterContainer/Pause Menu/Button Container/continue button" to="GameManager" method="start_shop"]
-[connection signal="pressed" from="UI/Score View/CenterContainer/Pause Menu/Button Container/exit button" to="GameManager" method="save_and_exit"]
+[connection signal="pressed" from="UI/Score View/CenterContainer/Score Menu/Button Container/home button" to="GameManager" method="clear_and_exit"]
+[connection signal="pressed" from="UI/Score View/CenterContainer/Score Menu/Button Container/continue button" to="GameManager" method="start_shop"]
+[connection signal="pressed" from="UI/Score View/CenterContainer/Score Menu/Button Container/exit button" to="GameManager" method="save_and_exit"]
 [connection signal="pressed" from="UI/Pause View/CenterContainer/Pause Menu/Button Container/restart button" to="GameManager" method="restart_level"]
 [connection signal="pressed" from="UI/Pause View/CenterContainer/Pause Menu/Button Container/exit button" to="GameManager" method="save_and_exit"]
