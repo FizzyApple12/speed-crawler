@@ -46,6 +46,8 @@ pub struct GameUIManager {
     target_time_label: OnEditor<Gd<Label>>,
 
     #[export]
+    score_floor_number_label: OnEditor<Gd<Label>>,
+    #[export]
     score_game_time_label: OnEditor<Gd<Label>>,
     #[export]
     score_target_time_label: OnEditor<Gd<Label>>,
@@ -162,6 +164,8 @@ impl GameUIManager {
 
     pub fn set_floor(&mut self, floor: i64) {
         self.floor_label.set_text(&format!("floor {floor}"));
+        self.score_floor_number_label
+            .set_text(&format!("floor {floor}"));
     }
 
     pub fn set_game_time(&mut self, time: f64, target: f64) {
@@ -250,6 +254,7 @@ impl INode for GameUIManager {
             game_time_label: OnEditor::default(),
             target_time_label: OnEditor::default(),
 
+            score_floor_number_label: OnEditor::default(),
             score_game_time_label: OnEditor::default(),
             score_target_time_label: OnEditor::default(),
             score_time_delta_label: OnEditor::default(),

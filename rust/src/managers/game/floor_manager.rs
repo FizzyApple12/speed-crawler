@@ -1,4 +1,3 @@
-use crate::managers::game::game_manager::GameManager;
 use crate::objects::map::floor::Floor;
 use crate::types::rooms::RoomType;
 use crate::types::save_game::SaveGame;
@@ -13,18 +12,24 @@ pub type FloorLayout = HashMap<(i64, i64), RoomType>;
 #[derive(GodotClass)]
 #[class(base=Node)]
 pub struct FloorManager {
-    #[export]
-    game_manager: OnEditor<Gd<GameManager>>,
-
     floor_generation_thread: Option<JoinHandle<(FloorLayout, f64)>>,
 
     #[export]
     current_floor: OnEditor<Gd<Floor>>,
 
-    pub current_floor_layout: HashMap<(i64, i64), RoomType>,
+    pub current_floor_layout: FloorLayout,
     pub estimated_completion_time: f64,
 
     base: Base<Node>,
+}
+
+#[godot_api]
+impl FloorManager {
+    #[signal]
+    fn level_setup_complete();
+
+    #[signal]
+    fn level_setup_failed();
 }
 
 impl FloorManager {
@@ -56,7 +61,7 @@ impl FloorManager {
             let max_room_count = 20 + (save_game.current_floor.pow(2)) + rng.random_range(-10..=10);
 
             // fixes rng somehow????
-            for _ in 0..(max_room_count * 2) {
+            for _ in 0..3 {
                 let _ = rng.random_range(-1..=1);
             }
 
@@ -92,8 +97,6 @@ impl FloorManager {
 impl INode for FloorManager {
     fn init(base: Base<Node>) -> Self {
         Self {
-            game_manager: OnEditor::default(),
-
             floor_generation_thread: None,
 
             current_floor: OnEditor::default(),
@@ -122,15 +125,12 @@ impl INode for FloorManager {
                         .bind_mut()
                         .load_floor(self.current_floor_layout.clone());
 
-                    self.game_manager.bind_mut().level_setup_complete(
-                        self.current_floor_layout.clone(),
-                        self.estimated_completion_time,
-                    );
+                    self.signals().level_setup_complete().emit();
                 }
                 Err(err) => {
                     godot_error!("Error generating floor: {err:?}");
 
-                    self.game_manager.bind_mut().level_setup_failed();
+                    self.signals().level_setup_failed().emit();
                 }
             }
         }

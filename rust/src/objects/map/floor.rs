@@ -1,4 +1,4 @@
-use crate::managers::game::floor_manager::{FloorLayout, FloorManager};
+use crate::managers::game::floor_manager::FloorLayout;
 use crate::objects::map::room::Room;
 use crate::objects::player::Player;
 use crate::types::rooms::RoomType;
@@ -11,9 +11,6 @@ use std::collections::HashMap;
 pub struct Floor {
     #[export]
     player: OnEditor<Gd<Player>>,
-
-    #[export]
-    floor_manager: OnEditor<Gd<FloorManager>>,
 
     floor_objects: HashMap<(i64, i64), Gd<Room>>,
 
@@ -76,8 +73,6 @@ impl INode3D for Floor {
     fn init(base: Base<Node3D>) -> Self {
         Self {
             player: OnEditor::default(),
-
-            floor_manager: OnEditor::default(),
 
             floor_objects: HashMap::new(),
 

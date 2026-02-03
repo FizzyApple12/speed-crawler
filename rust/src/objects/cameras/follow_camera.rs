@@ -3,7 +3,7 @@ use godot::prelude::*;
 
 #[derive(GodotClass)]
 #[class(base=Camera3D)]
-struct PlayerCamera {
+struct FollowCamera {
     #[export]
     follow_target: Option<Gd<Node3D>>,
 
@@ -11,7 +11,7 @@ struct PlayerCamera {
 }
 
 #[godot_api]
-impl ICamera3D for PlayerCamera {
+impl ICamera3D for FollowCamera {
     fn init(base: Base<Camera3D>) -> Self {
         Self {
             follow_target: None,
